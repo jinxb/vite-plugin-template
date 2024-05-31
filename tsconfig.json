@@ -8,18 +8,21 @@
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "outDir": "dist",
-    "lib": ["ESNext"],
+    "lib": ["ESNext", "DOM", "ES2020"],
     "sourceMap": false,
     "noEmitOnError": true,
-    "noImplicitAny": false
+    "noImplicitAny": true
   },
   "include": [
-    "src/*",
-    "*.d.ts"
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "plugin/*.ts",
+    "plugin/**/*.ts",
+    "scripts/*.ts",
+    "runtime/*.ts",
+    "shared/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "examples",
-    "dist"
-  ]
+  "exclude": ["node_modules", "examples", "dist"]
 }

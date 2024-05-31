@@ -1,24 +1,30 @@
 {
-  "root": true,
+  "parser": "vue-eslint-parser",
   "env": {
     "browser": true,
-    "es2021": true,
-    "es6": true,
-    "node": true
+    "es2021": true
   },
   "extends": [
-    "eslint:recommended",
+    "plugin:vue/vue3-essential",
+    "plugin:vue/vue3-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier"
   ],
-  "parser": "@typescript-eslint/parser",
+  "overrides": [],
   "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    "parser": "@typescript-eslint/parser",
+    "extraFileExtensions": [".vue"],
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./packages/editor/tsconfig.json", "./packages/example/tsconfig.json", "./tsconfig.json"]
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "vue"],
   "rules": {
-    "no-console": 1
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
+    "prettier/prettier": "off"
   }
 }
