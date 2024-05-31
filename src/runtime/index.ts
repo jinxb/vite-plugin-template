@@ -1,7 +1,8 @@
-export { default as InjectCodeMetaSFC } from './InjectCodeMetaSFC';
-export {
-  default as InjectCodeMetaElement,
-  InjectCodeMetaElementV2,
-  InjectCodeMetaElementV3,
-} from './InjectCodeMetaElement';
-export { default as InjectRuntime } from './InjectRuntime';
+import { inIframe } from '../shared/utils'
+import('./document')
+import('./componentTree')
+
+if (inIframe()) {
+  import('./route')
+  import('./mouse')
+}

@@ -1,5 +1,5 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 export const originPatchProp = `var patchProp = (el, key, prevValue, nextValue, isSVG = false, prevChildren, parentComponent, parentSuspense, unmountChildren) => {
   if (key === "class") {
@@ -20,7 +20,7 @@ export const originPatchProp = `var patchProp = (el, key, prevValue, nextValue, 
     }
     patchAttr(el, key, nextValue, isSVG);
   }
-};`;
+};`
 
 export const targetPatchProp = `var patchProp = (el, key, prevValue, nextValue, isSVG = false, prevChildren, parentComponent, parentSuspense, unmountChildren) => {
   if (key === "codeMeta") {
@@ -45,12 +45,17 @@ export const targetPatchProp = `var patchProp = (el, key, prevValue, nextValue, 
     }
     patchAttr(el, key, nextValue, isSVG);
   }
-};`;
+};`
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+let filename
+if (typeof import.meta === 'object' && import.meta.url) {
+  filename = fileURLToPath(import.meta.url)
+} else {
+  // CommonJS 环境的回退逻辑
+  filename = __filename
+}
+const dirname = path.dirname(filename)
 
-export const resolve = (...paths: string[]) =>
-  path.resolve(__dirname, ...paths);
+export const resolve = (...paths: string[]) => path.resolve(dirname, ...paths)
 
-export const scriptCache = new Map<string, string>();
+export const scriptCache = new Map<string, string>()
