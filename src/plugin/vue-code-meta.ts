@@ -1,4 +1,5 @@
 import { createFilter, PluginOption } from 'vite'
+import cors from 'cors'
 import { InjectCodeMetaSFC, InjectRuntime } from './runtime'
 import middleware from './middleware'
 
@@ -20,6 +21,7 @@ export default function vitePluginCodeMeta(customOptions: object): PluginOption 
     name: 'vite-plugin-code-meta',
     apply: 'serve',
     configureServer(server) {
+      server.middlewares.use(cors())
       let isSpecificMiddlewareExecuted = { value: false }
       const { PushInfoMiddleware, CodeMetaMiddleware, FSHandleMiddleware } = middleware
       const specificMiddleware = PushInfoMiddleware(isSpecificMiddlewareExecuted)
